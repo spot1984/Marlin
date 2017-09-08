@@ -346,8 +346,6 @@
 
 bool Running = true;
 
-uint8_t marlin_debug_flags = DEBUG_NONE;
-
 /**
  * Cartesian Current Position
  *   Used to track the logical position as moves are queued.
@@ -718,31 +716,6 @@ void set_current_from_steppers_for_axis(const AxisEnum axis);
 #endif
 
 void report_current_position();
-
-#if ENABLED(DEBUG_LEVELING_FEATURE)
-  void print_xyz(const char* prefix, const char* suffix, const float x, const float y, const float z) {
-    serialprintPGM(prefix);
-    SERIAL_CHAR('(');
-    SERIAL_ECHO(x);
-    SERIAL_ECHOPAIR(", ", y);
-    SERIAL_ECHOPAIR(", ", z);
-    SERIAL_CHAR(')');
-    if (suffix) serialprintPGM(suffix); else SERIAL_EOL();
-  }
-
-  void print_xyz(const char* prefix, const char* suffix, const float xyz[]) {
-    print_xyz(prefix, suffix, xyz[X_AXIS], xyz[Y_AXIS], xyz[Z_AXIS]);
-  }
-
-  #if HAS_ABL
-    void print_xyz(const char* prefix, const char* suffix, const vector_3 &xyz) {
-      print_xyz(prefix, suffix, xyz.x, xyz.y, xyz.z);
-    }
-  #endif
-
-  #define DEBUG_POS(SUFFIX,VAR) do { \
-    print_xyz(PSTR("  " STRINGIFY(VAR) "="), PSTR(" : " SUFFIX "\n"), VAR); }while(0)
-#endif
 
 /**
  * sync_plan_position
