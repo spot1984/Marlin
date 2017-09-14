@@ -86,7 +86,8 @@
 // User-specified version info of this build to display in [Pronterface, etc] terminal window during
 // startup. Implementation of an idea by Prof Braino to inform user that any changes made to this
 // build by the user have been successfully uploaded into firmware.
-#define STRING_CONFIG_H_AUTHOR "(none, default config)" // Who made the changes.
+//DSW#define STRING_CONFIG_H_AUTHOR "(Tom, 2017-03-19)" // Who made the changes.
+#define STRING_CONFIG_H_AUTHOR "(DSW, 2017-06-21)" // Who made the changes.
 #define SHOW_BOOTSCREEN
 #define STRING_SPLASH_LINE1 SHORT_BUILD_VERSION // will be shown during bootup in line 1
 #define STRING_SPLASH_LINE2 WEBSITE_URL         // will be shown during bootup in line 2
@@ -131,6 +132,7 @@
 // Please choose the name from boards.h that matches your setup
 #ifndef MOTHERBOARD
   #define MOTHERBOARD BOARD_RAMPS_14_EFB
+  // DSW EFP Extruder Fan Bed
 #endif
 
 // Optional custom name for your RepStrap or other custom machine
@@ -249,11 +251,11 @@
  *
  * :{ '0': "Not used", '1':"100k / 4.7k - EPCOS", '2':"200k / 4.7k - ATC Semitec 204GT-2", '3':"Mendel-parts / 4.7k", '4':"10k !! do not use for a hotend. Bad resolution at high temp. !!", '5':"100K / 4.7k - ATC Semitec 104GT-2 (Used in ParCan & J-Head)", '6':"100k / 4.7k EPCOS - Not as accurate as Table 1", '7':"100k / 4.7k Honeywell 135-104LAG-J01", '8':"100k / 4.7k 0603 SMD Vishay NTCS0603E3104FXT", '9':"100k / 4.7k GE Sensing AL03006-58.2K-97-G1", '10':"100k / 4.7k RS 198-961", '11':"100k / 4.7k beta 3950 1%", '12':"100k / 4.7k 0603 SMD Vishay NTCS0603E3104FXT (calibrated for Makibox hot bed)", '13':"100k Hisens 3950  1% up to 300°C for hotend 'Simple ONE ' & hotend 'All In ONE'", '20':"PT100 (Ultimainboard V2.x)", '51':"100k / 1k - EPCOS", '52':"200k / 1k - ATC Semitec 204GT-2", '55':"100k / 1k - ATC Semitec 104GT-2 (Used in ParCan & J-Head)", '60':"100k Maker's Tool Works Kapton Bed Thermistor beta=3950", '66':"Dyze Design 4.7M High Temperature thermistor", '70':"the 100K thermistor found in the bq Hephestos 2", '71':"100k / 4.7k Honeywell 135-104LAF-J01", '147':"Pt100 / 4.7k", '1047':"Pt1000 / 4.7k", '110':"Pt100 / 1k (non-standard)", '1010':"Pt1000 / 1k (non standard)", '-3':"Thermocouple + MAX31855 (only for sensor 0)", '-2':"Thermocouple + MAX6675 (only for sensor 0)", '-1':"Thermocouple + AD595",'998':"Dummy 1", '999':"Dummy 2" }
  */
-#define TEMP_SENSOR_0 1
+#define TEMP_SENSOR_0 13
 #define TEMP_SENSOR_1 0
 #define TEMP_SENSOR_2 0
 #define TEMP_SENSOR_3 0
-#define TEMP_SENSOR_BED 0
+#define TEMP_SENSOR_BED 13
 
 // Dummy thermistor constant temperature readings, for use with 998 and 999
 #define DUMMY_THERMISTOR_998_VALUE 25
@@ -290,7 +292,7 @@
 #define HEATER_1_MAXTEMP 275
 #define HEATER_2_MAXTEMP 275
 #define HEATER_3_MAXTEMP 275
-#define BED_MAXTEMP 150
+#define BED_MAXTEMP 120
 
 //===========================================================================
 //============================= PID Settings ================================
@@ -313,10 +315,32 @@
   #define K1 0.95 //smoothing factor within the PID
 
   // If you are using a pre-configured hotend then you can use one of the value sets by uncommenting it
+  // DSW Sam Bell
+    // M303 E0 S200 C8 These led to Thermal runaway error when printing at 215
+    //#define  DEFAULT_Kp 21.28
+    //#define  DEFAULT_Ki 1.79
+    //#define  DEFAULT_Kd 63.28
+  
+    // M303 E0 S225 C8
+    //#define  DEFAULT_Kp 23.63
+    //#define  DEFAULT_Ki 1.99
+    //#define  DEFAULT_Kd 70.26
+  
+    //M303 E0 S250 C8
+    //#define  DEFAULT_Kp 19.32
+    //#define  DEFAULT_Ki 1.52
+    //#define  DEFAULT_Kd 61.25
+
+    // M106 ; turn on cooling fan 
+    // M303 E0 S220 C8 ; tune PID
+    #define  DEFAULT_Kp 23.09
+    #define  DEFAULT_Ki 1.85
+    #define  DEFAULT_Kd 72.06
+  
   // Ultimaker
-  #define  DEFAULT_Kp 22.2
-  #define  DEFAULT_Ki 1.08
-  #define  DEFAULT_Kd 114
+  //#define  DEFAULT_Kp 22.2
+  //#define  DEFAULT_Ki 1.08
+  //#define  DEFAULT_Kd 114
 
   // MakerGear
   //#define  DEFAULT_Kp 7.0
@@ -342,7 +366,7 @@
 // If your configuration is significantly different than this and you don't understand the issues involved, you probably
 // shouldn't use bed PID until someone else verifies your hardware works.
 // If this is enabled, find your own PID constants below.
-//#define PIDTEMPBED
+#define PIDTEMPBED
 
 //#define BED_LIMIT_SWITCHING
 
@@ -356,11 +380,21 @@
 
   //#define PID_BED_DEBUG // Sends debug data to the serial port.
 
+  // DSW Sam Bell
+  // M303 E-1 S60 C8 
+  //#define  DEFAULT_bedKp 373.96
+  //#define  DEFAULT_bedKi 71.77
+  //#define  DEFAULT_bedKd 487.13
+  // M303 E-1 S60 C8 
+  #define  DEFAULT_bedKp 607.98
+  #define  DEFAULT_bedKi 118.93
+  #define  DEFAULT_bedKd 777.00
+
   //120V 250W silicone heater into 4mm borosilicate (MendelMax 1.5+)
   //from FOPDT model - kp=.39 Tp=405 Tdead=66, Tc set to 79.2, aggressive factor of .15 (vs .1, 1, 10)
-  #define  DEFAULT_bedKp 10.00
-  #define  DEFAULT_bedKi .023
-  #define  DEFAULT_bedKd 305.4
+  //#define  DEFAULT_bedKp 10.00
+  //#define  DEFAULT_bedKi .023
+  //#define  DEFAULT_bedKd 305.4
 
   //120V 250W silicone heater into 4mm borosilicate (MendelMax 1.5+)
   //from pidautotune
@@ -378,7 +412,7 @@
 // or to allow moving the extruder regardless of the hotend temperature.
 // *** IT IS HIGHLY RECOMMENDED TO LEAVE THIS OPTION ENABLED! ***
 #define PREVENT_COLD_EXTRUSION
-#define EXTRUDE_MINTEMP 170
+#define EXTRUDE_MINTEMP 120
 
 // This option prevents a single extrusion longer than EXTRUDE_MAXLENGTH.
 // Note that for Bowden Extruders a too-small value here may prevent loading.
@@ -412,12 +446,7 @@
 
 // Uncomment one of these options to enable CoreXY, CoreXZ, or CoreYZ kinematics
 // either in the usual order or reversed
-//#define COREXY
-//#define COREXZ
-//#define COREYZ
-//#define COREYX
-//#define COREZX
-//#define COREZY
+
 
 // Enable this option for Toshiba steppers
 //#define CONFIG_STEPPERS_TOSHIBA
@@ -439,7 +468,7 @@
 //#define USE_ZMAX_PLUG
 
 // coarse Endstop Settings
-#define ENDSTOPPULLUPS // Comment this out (using // at the start of the line) to disable the endstop pullup resistors
+// #define ENDSTOPPULLUPS // Comment this out (using // at the start of the line) to disable the endstop pullup resistors
 
 #if DISABLED(ENDSTOPPULLUPS)
   // fine endstop settings: Individual pullups. will be ignored if ENDSTOPPULLUPS is defined
@@ -453,9 +482,9 @@
 #endif
 
 // Mechanical endstop with COM to ground and NC to Signal uses "false" here (most common setup).
-#define X_MIN_ENDSTOP_INVERTING false // set to true to invert the logic of the endstop.
-#define Y_MIN_ENDSTOP_INVERTING false // set to true to invert the logic of the endstop.
-#define Z_MIN_ENDSTOP_INVERTING false // set to true to invert the logic of the endstop.
+#define X_MIN_ENDSTOP_INVERTING true // set to true to invert the logic of the endstop.
+#define Y_MIN_ENDSTOP_INVERTING true // set to true to invert the logic of the endstop.
+#define Z_MIN_ENDSTOP_INVERTING true // set to true to invert the logic of the endstop.
 #define X_MAX_ENDSTOP_INVERTING false // set to true to invert the logic of the endstop.
 #define Y_MAX_ENDSTOP_INVERTING false // set to true to invert the logic of the endstop.
 #define Z_MAX_ENDSTOP_INVERTING false // set to true to invert the logic of the endstop.
@@ -486,14 +515,23 @@
  * Override with M92
  *                                      X, Y, Z, E0 [, E1[, E2[, E3]]]
  */
-#define DEFAULT_AXIS_STEPS_PER_UNIT   { 80, 80, 4000, 500 }
+//DSW #define DEFAULT_AXIS_STEPS_PER_UNIT   { 100, 100, 4000, 160 }
+//DSW swapped Z leadscrew#define DEFAULT_AXIS_STEPS_PER_UNIT   { 100, 100, 2015.75, 155 } // DSW 16tpi ~ 2015.75
+#define DEFAULT_AXIS_STEPS_PER_UNIT   { 100, 100, 400, 155 } // DSW 16tpi ~ 2015.75
 
 /**
  * Default Max Feed Rate (mm/s)
  * Override with M203
  *                                      X, Y, Z, E0 [, E1[, E2[, E3]]]
  */
-#define DEFAULT_MAX_FEEDRATE          { 300, 300, 5, 25 }
+//#define DEFAULT_MAX_FEEDRATE          { 200, 200, 3, 25 }
+//DSW swapped leadscrew#define DEFAULT_MAX_FEEDRATE          { 20000/60, 20000/60, 350/60, 300/60 }
+#define DEFAULT_MAX_FEEDRATE          { 20000/60, 20000/60, 1950/60, 300/60 }
+// DSW Pronterface shows mm/min this is mm/s!!!
+// X goes crazy at 25000, hangs at 22000 can do 22000
+// Y goes crazy at 25000, hangs at 22000 can do 22000
+// Z vibrates badly at 1975 (old threaded rod: skips at ~375)
+// E can get skips at 300
 
 /**
  * Default Max Acceleration (change/s) change = mm/s
@@ -501,7 +539,10 @@
  * Override with M201
  *                                      X, Y, Z, E0 [, E1[, E2[, E3]]]
  */
-#define DEFAULT_MAX_ACCELERATION      { 3000, 3000, 100, 10000 }
+// DSW adjusting Z acceleration #define DEFAULT_MAX_ACCELERATION      { 3000, 3000, 100, 10000 }
+#define DEFAULT_MAX_ACCELERATION      { 3000, 3000, 1000, 10000 }
+// DSW skipping y steps when printing a cylinder (belt was too tight)
+//#define DEFAULT_MAX_ACCELERATION      { 500, 500, 100, 600 }
 
 /**
  * Default Acceleration (change/s) change = mm/s
@@ -514,6 +555,10 @@
 #define DEFAULT_ACCELERATION          3000    // X, Y, Z and E acceleration for printing moves
 #define DEFAULT_RETRACT_ACCELERATION  3000    // E acceleration for retracts
 #define DEFAULT_TRAVEL_ACCELERATION   3000    // X, Y, Z acceleration for travel (non printing) moves
+// DSW 
+//#define DEFAULT_ACCELERATION          500    // X, Y, Z and E acceleration for printing moves
+//#define DEFAULT_RETRACT_ACCELERATION  600    // E acceleration for retracts
+//#define DEFAULT_TRAVEL_ACCELERATION   500    // X, Y, Z acceleration for travel (non printing) moves
 
 /**
  * Default Jerk (mm/s)
@@ -522,10 +567,10 @@
  * When changing speed and direction, if the difference is less than the
  * value set here, it may happen instantaneously.
  */
-#define DEFAULT_XJERK                 20.0
-#define DEFAULT_YJERK                 20.0
+#define DEFAULT_XJERK                 10.0
+#define DEFAULT_YJERK                 10.0  //DSW 1.0
 #define DEFAULT_ZJERK                  0.4
-#define DEFAULT_EJERK                  5.0
+#define DEFAULT_EJERK                  2.0
 
 
 //===========================================================================
@@ -547,7 +592,7 @@
 // For example an inductive probe, or a setup that uses the nozzle to probe.
 // An inductive probe must be deactivated to go below
 // its trigger-point if hardware endstops are active.
-//#define FIX_MOUNTED_PROBE
+#define FIX_MOUNTED_PROBE
 
 // The BLTouch probe emulates a servo probe.
 // The default connector is SERVO 0. Set Z_ENDSTOP_SERVO_NR below to override.
@@ -578,12 +623,17 @@
 //    |           |
 //    O-- FRONT --+
 //  (0,0)
-#define X_PROBE_OFFSET_FROM_EXTRUDER 10  // X offset: -left  +right  [of the nozzle]
+//#define X_PROBE_OFFSET_FROM_EXTRUDER 21  // X offset: -left  +right  [of the nozzle]
+//#define Y_PROBE_OFFSET_FROM_EXTRUDER 10  // Y offset: -front +behind [the nozzle]
+//#define Z_PROBE_OFFSET_FROM_EXTRUDER -0.45  // Z offset: -below +above  [the nozzle]
+
+// DSW 8/19/2017
+#define X_PROBE_OFFSET_FROM_EXTRUDER 17  // X offset: -left  +right  [of the nozzle]
 #define Y_PROBE_OFFSET_FROM_EXTRUDER 10  // Y offset: -front +behind [the nozzle]
-#define Z_PROBE_OFFSET_FROM_EXTRUDER 0   // Z offset: -below +above  [the nozzle]
+#define Z_PROBE_OFFSET_FROM_EXTRUDER -9.3  // Z offset: -below +above  [the nozzle]
 
 // X and Y axis travel speed (mm/m) between probes
-#define XY_PROBE_SPEED 8000
+#define XY_PROBE_SPEED 20000
 // Speed for the first approach when double-probing (with PROBE_DOUBLE_TOUCH)
 #define Z_PROBE_SPEED_FAST HOMING_FEEDRATE_Z
 // Speed for the "accurate" probe of each point
@@ -639,7 +689,7 @@
 // To use a probe you must enable one of the two options above!
 
 // Enable Z Probe Repeatability test to see how accurate your probe is
-//#define Z_MIN_PROBE_REPEATABILITY_TEST
+#define Z_MIN_PROBE_REPEATABILITY_TEST
 
 /**
  * Z probes require clearance when deploying, stowing, and moving between
@@ -655,8 +705,10 @@
  * Example: `M851 Z-5` with a CLEARANCE of 4  =>  9mm from bed to nozzle.
  *     But: `M851 Z+1` with a CLEARANCE of 2  =>  2mm from bed to nozzle.
  */
-#define Z_CLEARANCE_DEPLOY_PROBE   10 // Z Clearance for Deploy/Stow
-#define Z_CLEARANCE_BETWEEN_PROBES  5 // Z Clearance between probe points
+// DSW #define Z_CLEARANCE_DEPLOY_PROBE    5 // Z Clearance for Deploy/Stow
+// DSW #define Z_CLEARANCE_BETWEEN_PROBES  3 // Z Clearance between probe points
+#define Z_CLEARANCE_DEPLOY_PROBE    7 // Z Clearance for Deploy/Stow
+#define Z_CLEARANCE_BETWEEN_PROBES  7 // Z Clearance between probe points
 
 //
 // For M851 give a range for adjusting the Z probe offset
@@ -688,13 +740,13 @@
 
 // Invert the stepper direction. Change (or reverse the motor connector) if an axis goes the wrong way.
 #define INVERT_X_DIR false
-#define INVERT_Y_DIR true
+#define INVERT_Y_DIR false
 #define INVERT_Z_DIR false
 
 // @section extruder
 
 // For direct drive extruder v9 set to true, for geared extruder set to false.
-#define INVERT_E0_DIR false
+#define INVERT_E0_DIR true
 #define INVERT_E1_DIR false
 #define INVERT_E2_DIR false
 #define INVERT_E3_DIR false
@@ -720,9 +772,11 @@
 #define X_MIN_POS 0
 #define Y_MIN_POS 0
 #define Z_MIN_POS 0
-#define X_MAX_POS 200
-#define Y_MAX_POS 200
-#define Z_MAX_POS 200
+// DSW reset Z at 217 probe #define X_MAX_POS 213
+#define X_MAX_POS 217
+#define Y_MAX_POS 201
+// DSW could not reach top#define Z_MAX_POS 210
+#define Z_MAX_POS 210
 
 //===========================================================================
 //========================= Filament Runout Sensor ==========================
@@ -792,7 +846,7 @@
  */
 //#define AUTO_BED_LEVELING_3POINT
 //#define AUTO_BED_LEVELING_LINEAR
-//#define AUTO_BED_LEVELING_BILINEAR
+#define AUTO_BED_LEVELING_BILINEAR
 
 /**
  * Enable detailed logging of G28, G29, M48, etc.
@@ -807,14 +861,14 @@
   #define ABL_GRID_POINTS_X 3
   #define ABL_GRID_POINTS_Y ABL_GRID_POINTS_X
 
-  // Set the boundaries for probing (where the probe can reach).
-  #define LEFT_PROBE_BED_POSITION 15
-  #define RIGHT_PROBE_BED_POSITION 170
-  #define FRONT_PROBE_BED_POSITION 20
-  #define BACK_PROBE_BED_POSITION 170
+   // Set the boundaries for probing (where the probe can reach).
+  #define LEFT_PROBE_BED_POSITION 23  
+  #define RIGHT_PROBE_BED_POSITION 196
+  #define FRONT_PROBE_BED_POSITION 33
+  #define BACK_PROBE_BED_POSITION 194
 
   // The Z probe minimum outer margin (to validate G29 parameters).
-  #define MIN_PROBE_EDGE 10
+  #define MIN_PROBE_EDGE 20
 
   // Probe along the Y axis, advancing X after each column
   //#define PROBE_Y_FIRST
@@ -865,9 +919,9 @@
 
 // Manually set the home position. Leave these undefined for automatic settings.
 // For DELTA this is the top-center of the Cartesian print volume.
-//#define MANUAL_X_HOME_POS 0
-//#define MANUAL_Y_HOME_POS 0
-//#define MANUAL_Z_HOME_POS 0 // Distance between the nozzle to printbed after homing
+#define MANUAL_X_HOME_POS -3
+#define MANUAL_Y_HOME_POS -13
+#define MANUAL_Z_HOME_POS 0.5 // Distance between the nozzle to printbed after homing
 
 // Use "Z Safe Homing" to avoid homing with a Z probe outside the bed area.
 //
@@ -877,16 +931,18 @@
 // - If stepper drivers time out, it will need X and Y homing again before Z homing.
 // - Move the Z probe (or nozzle) to a defined XY point before Z Homing when homing all axes (G28).
 // - Prevent Z homing when the Z probe is outside bed area.
-//#define Z_SAFE_HOMING
+#define Z_SAFE_HOMING
 
 #if ENABLED(Z_SAFE_HOMING)
-  #define Z_SAFE_HOMING_X_POINT ((X_MIN_POS + X_MAX_POS) / 2)    // X point for Z homing when homing all axis (G28).
+// DSW -10 to move off center hole
+  #define Z_SAFE_HOMING_X_POINT ((X_MIN_POS + X_MAX_POS) / 2)-10    // X point for Z homing when homing all axis (G28).
   #define Z_SAFE_HOMING_Y_POINT ((Y_MIN_POS + Y_MAX_POS) / 2)    // Y point for Z homing when homing all axis (G28).
 #endif
 
 // Homing speeds (mm/m)
 #define HOMING_FEEDRATE_XY (50*60)
-#define HOMING_FEEDRATE_Z  (4*60)
+//#define HOMING_FEEDRATE_Z  (4*60)
+#define HOMING_FEEDRATE_Z  (10*60)
 
 //=============================================================================
 //============================= Additional Features ===========================
@@ -1097,7 +1153,7 @@
 // IMPORTANT NOTE: The U8glib library is required for Full Graphic Display!
 //                 https://github.com/olikraus/U8glib_Arduino
 //
-//#define ULTRA_LCD   // Character based
+#define ULTRA_LCD   // Character based
 //#define DOGLCD      // Full graphics display
 
 //
@@ -1106,7 +1162,7 @@
 // SD Card support is disabled by default. If your controller has an SD slot,
 // you must uncomment the following option or it won't work.
 //
-//#define SDSUPPORT
+#define SDSUPPORT
 
 //
 // SD CARD: SPI SPEED
@@ -1114,7 +1170,7 @@
 // Uncomment ONE of the following items to use a slower SPI transfer
 // speed. This is usually required if you're getting volume init errors.
 //
-//#define SPI_SPEED SPI_HALF_SPEED
+#define SPI_SPEED SPI_HALF_SPEED
 //#define SPI_SPEED SPI_QUARTER_SPEED
 //#define SPI_SPEED SPI_EIGHTH_SPEED
 
@@ -1123,7 +1179,7 @@
 //
 // Use CRC checks and retries on the SD communication.
 //
-//#define SD_CHECK_AND_RETRY
+#define SD_CHECK_AND_RETRY
 
 //
 // ENCODER SETTINGS
@@ -1131,7 +1187,7 @@
 // This option overrides the default number of encoder pulses needed to
 // produce one step. Should be increased for high-resolution encoders.
 //
-//#define ENCODER_PULSES_PER_STEP 1
+#define ENCODER_PULSES_PER_STEP 1
 
 //
 // Use this option to override the number of step signals required to
@@ -1154,7 +1210,7 @@
 //
 //  Set this option if CLOCKWISE causes values to DECREASE
 //
-//#define REVERSE_ENCODER_DIRECTION
+#define REVERSE_ENCODER_DIRECTION
 
 //
 // This option reverses the encoder direction for navigating LCD menus.
@@ -1250,7 +1306,7 @@
 //
 // Note: Usually sold with a white PCB.
 //
-//#define REPRAP_DISCOUNT_SMART_CONTROLLER
+#define REPRAP_DISCOUNT_SMART_CONTROLLER
 
 //
 // GADGETS3D G3D LCD/SD Controller
