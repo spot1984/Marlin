@@ -417,7 +417,8 @@ void lcd_print(char c) { charset_mapper(c); }
     lcd.setCursor(indent, 1);                    lcd_printPGM(PSTR("|Marlin|"));  lcd_printPGM(extra);
     lcd.setCursor(indent, 2); lcd.print('\x02'); lcd_printPGM(PSTR( "------" ));  lcd.print('\x03');
   }
-
+  
+  // DSW this is where we can add a custom boot screen.
   void bootscreen() {
     byte top_left[8] = {
       B00000,
