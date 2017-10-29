@@ -189,7 +189,7 @@
 //This is for controlling a fan to cool down the stepper drivers
 //it will turn on when any driver is enabled
 //and turn off after the set amount of seconds from last driver being disabled again
-#define CONTROLLERFAN_PIN -1 //Pin used for the fan to cool controller (-1 to disable)
+#define CONTROLLERFAN_PIN 11 //Pin used for the fan to cool controller (-1 to disable)  MANDELBOT KEVIN:  D11 on RRD Fan Extender board - will be -1 when/if i get a 2nd extruder head.
 #define CONTROLLERFAN_SECS 60 //How many seconds, after all motors were disabled, the fan should run
 #define CONTROLLERFAN_SPEED 255  // == full speed
 
@@ -217,8 +217,8 @@
  * Multiple extruders can be assigned to the same pin in which case
  * the fan will turn on when any selected extruder is above the threshold.
  */
-#define E0_AUTO_FAN_PIN -1
-#define E1_AUTO_FAN_PIN -1
+#define E0_AUTO_FAN_PIN 6  // MANDELBOT KEVIN. GEEETECH RRD FAN EXTENDER on pins D6 and D11.  blue terminal has D8 (bed heat) D9 (fan) and D10 (extruder heat).
+#define E1_AUTO_FAN_PIN -1 // MANDELBOT KEVIN. will be 11 if i get a 2nd extruder on D9... :)
 #define E2_AUTO_FAN_PIN -1
 #define E3_AUTO_FAN_PIN -1
 #define EXTRUDER_AUTO_FAN_TEMPERATURE 50

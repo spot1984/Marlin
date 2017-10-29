@@ -137,11 +137,11 @@
 
 // Optional custom name for your RepStrap or other custom machine
 // Displayed in the LCD "Ready" message
-//#define CUSTOM_MACHINE_NAME "3D Printer"
+#define CUSTOM_MACHINE_NAME "MandelBot" // MANDELBOT KEVIN
 
 // Define this to set a unique identifier for this printer, (Used by some programs to differentiate between machines)
 // You can use an online service to generate a random UUID. (eg http://www.uuidgenerator.net/version4)
-//#define MACHINE_UUID "00000000-0000-0000-0000-000000000000"
+#define MACHINE_UUID "25c1e7a9-f185-4b2c-b02f-6d2d8b124560" // MANDELBOT KEVIN
 
 // This defines the number of extruders
 // :[1, 2, 3, 4]
@@ -331,11 +331,12 @@
     //#define  DEFAULT_Ki 1.52
     //#define  DEFAULT_Kd 61.25
 
-    // M106 ; turn on cooling fan 
-    // M303 E0 S220 C8 ; tune PID
-    #define  DEFAULT_Kp 23.09
-    #define  DEFAULT_Ki 1.85
-    #define  DEFAULT_Kd 72.06
+    // MANDELBOT KEVIN - hotend PID
+    // M303 E0 S200 C8 ; tune PID
+    // M303 E0 S220 C8 ; tune PID - SamBell had this... ?
+    #define  DEFAULT_Kp 21.32
+    #define  DEFAULT_Ki 1.81
+    #define  DEFAULT_Kd 62.87
   
   // Ultimaker
   //#define  DEFAULT_Kp 22.2
@@ -385,10 +386,12 @@
   //#define  DEFAULT_bedKp 373.96
   //#define  DEFAULT_bedKi 71.77
   //#define  DEFAULT_bedKd 487.13
+
+  // MANDELBOT KEVIN - bed PID
   // M303 E-1 S60 C8 
-  #define  DEFAULT_bedKp 607.98
-  #define  DEFAULT_bedKi 118.93
-  #define  DEFAULT_bedKd 777.00
+  #define  DEFAULT_bedKp 524.15
+  #define  DEFAULT_bedKi 98.74
+  #define  DEFAULT_bedKd 695.61
 
   //120V 250W silicone heater into 4mm borosilicate (MendelMax 1.5+)
   //from FOPDT model - kp=.39 Tp=405 Tdead=66, Tc set to 79.2, aggressive factor of .15 (vs .1, 1, 10)
@@ -515,22 +518,18 @@
  * Override with M92
  *                                      X, Y, Z, E0 [, E1[, E2[, E3]]]
  */
-//DSW #define DEFAULT_AXIS_STEPS_PER_UNIT   { 100, 100, 4000, 160 }
-//DSW swapped Z leadscrew#define DEFAULT_AXIS_STEPS_PER_UNIT   { 100, 100, 2015.75, 155 } // DSW 16tpi ~ 2015.75
-#define DEFAULT_AXIS_STEPS_PER_UNIT   { 100, 100, 400, 155 } // DSW 16tpi ~ 2015.75
+#define DEFAULT_AXIS_STEPS_PER_UNIT   { 100, 100, 400, 144 } // MANDELBOT KEVIN - Extruder motor calibration
 
 /**
  * Default Max Feed Rate (mm/s)
  * Override with M203
  *                                      X, Y, Z, E0 [, E1[, E2[, E3]]]
  */
-//#define DEFAULT_MAX_FEEDRATE          { 200, 200, 3, 25 }
-//DSW swapped leadscrew#define DEFAULT_MAX_FEEDRATE          { 20000/60, 20000/60, 350/60, 300/60 }
-#define DEFAULT_MAX_FEEDRATE          { 20000/60, 20000/60, 1950/60, 300/60 }
-// DSW Pronterface shows mm/min this is mm/s!!!
+#define DEFAULT_MAX_FEEDRATE          { 20000/60, 20000/60, 1800/60, 300/60 }  // MANDELBOT KEVIN - XYZE Axis motor top speeds in mm/sec ((mm/min)/60 == mm/sec)
+// Pronterface shows mm/min this is mm/s!!!
 // X goes crazy at 25000, hangs at 22000 can do 22000
 // Y goes crazy at 25000, hangs at 22000 can do 22000
-// Z vibrates badly at 1975 (old threaded rod: skips at ~375)
+// Z vibrates badly at 1900, 1800 seems ok
 // E can get skips at 300
 
 /**
@@ -627,10 +626,13 @@
 //#define Y_PROBE_OFFSET_FROM_EXTRUDER 10  // Y offset: -front +behind [the nozzle]
 //#define Z_PROBE_OFFSET_FROM_EXTRUDER -0.45  // Z offset: -below +above  [the nozzle]
 
-// DSW 8/19/2017
-#define X_PROBE_OFFSET_FROM_EXTRUDER 17  // X offset: -left  +right  [of the nozzle]
-#define Y_PROBE_OFFSET_FROM_EXTRUDER 10  // Y offset: -front +behind [the nozzle]
-#define Z_PROBE_OFFSET_FROM_EXTRUDER -9.3  // Z offset: -below +above  [the nozzle]
+// KEVIN MANDELBOT - PROBE OFFSET from EXTRUDER
+#define X_PROBE_OFFSET_FROM_EXTRUDER 25     // X offset: -left  +right  [of the nozzle]
+#define Y_PROBE_OFFSET_FROM_EXTRUDER 5      // Y offset: -front +behind [the nozzle]
+#define Z_PROBE_OFFSET_FROM_EXTRUDER -19.43 // Z offset: -below +above  [the nozzle]
+//#define Z_PROBE_OFFSET_FROM_EXTRUDER -19.45 // 1st layer has small lip protruding
+//#define Z_PROBE_OFFSET_FROM_EXTRUDER -19.40 // 1st layer kind of toothpasty infill separated ever so slightly
+//#define Z_PROBE_OFFSET_FROM_EXTRUDER -19.25 // 1st layer thick
 
 // X and Y axis travel speed (mm/m) between probes
 #define XY_PROBE_SPEED 20000
@@ -862,7 +864,7 @@
   #define ABL_GRID_POINTS_Y ABL_GRID_POINTS_X
 
    // Set the boundaries for probing (where the probe can reach).
-  #define LEFT_PROBE_BED_POSITION 23  
+  #define LEFT_PROBE_BED_POSITION 33   //23 KEVIN MANDELBOT
   #define RIGHT_PROBE_BED_POSITION 196
   #define FRONT_PROBE_BED_POSITION 33
   #define BACK_PROBE_BED_POSITION 194

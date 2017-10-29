@@ -165,7 +165,7 @@
 #define HEATER_0_PIN     RAMPS_D10_PIN
 
 #if ENABLED(IS_RAMPS_EFB)                      // Hotend, Fan, Bed
-  #define FAN_PIN        RAMPS_D9_PIN
+  #define FAN_PIN        RAMPS_D9_PIN  // MANDELBOT KEVIN comment out for RRD FanExtender testing
   #define HEATER_BED_PIN RAMPS_D8_PIN
 #elif ENABLED(IS_RAMPS_EEF)                    // Hotend, Hotend, Fan
   #define HEATER_1_PIN   RAMPS_D9_PIN
@@ -190,6 +190,7 @@
 
 #ifndef FAN_PIN
   #define FAN_PIN 4      // IO pin. Buffer needed
+  //#define FAN_PIN 6      // MANDELBOT KEVIN for RRD testing (comment out the KEVIN above too)...
 #endif
 
 //
