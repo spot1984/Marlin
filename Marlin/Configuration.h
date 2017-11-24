@@ -629,7 +629,14 @@
 // KEVIN MANDELBOT - PROBE OFFSET from EXTRUDER
 #define X_PROBE_OFFSET_FROM_EXTRUDER 25     // X offset: -left  +right  [of the nozzle]
 #define Y_PROBE_OFFSET_FROM_EXTRUDER 5      // Y offset: -front +behind [the nozzle]
-#define Z_PROBE_OFFSET_FROM_EXTRUDER -19.43 // Z offset: -below +above  [the nozzle]
+
+// KEVIN: to calibrate: use EMPIRE stainless steel ruler from harborfreight, it's 0.8mm, move Z down until it just mildly grabs the ruler, it will read 0.8 for Z on the LCD
+// eg: offset of -18.93 puts 0 farther from the bed
+// eg: offset of -19.03 puts 0 closer to the bed
+#define Z_PROBE_OFFSET_FROM_EXTRUDER -19.04 // 1st layer is smooth w/ very slight toothpasteyness and has no lip protruding
+
+// KEVIN: old settings before re-screwing the hotend
+//#define Z_PROBE_OFFSET_FROM_EXTRUDER -19.43 // 1st layer is smooth and has tiny lip protruding
 //#define Z_PROBE_OFFSET_FROM_EXTRUDER -19.45 // 1st layer has small lip protruding
 //#define Z_PROBE_OFFSET_FROM_EXTRUDER -19.40 // 1st layer kind of toothpasty infill separated ever so slightly
 //#define Z_PROBE_OFFSET_FROM_EXTRUDER -19.25 // 1st layer thick
