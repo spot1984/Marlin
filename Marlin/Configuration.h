@@ -630,7 +630,7 @@
 // DSW 8/19/2017
 #define X_PROBE_OFFSET_FROM_EXTRUDER 17  // X offset: -left  +right  [of the nozzle]
 #define Y_PROBE_OFFSET_FROM_EXTRUDER 10  // Y offset: -front +behind [the nozzle]
-#define Z_PROBE_OFFSET_FROM_EXTRUDER -9.3  // Z offset: -below +above  [the nozzle]
+#define Z_PROBE_OFFSET_FROM_EXTRUDER -10.4 // Z offset: -below +above  [the nozzle]
 
 // X and Y axis travel speed (mm/m) between probes
 #define XY_PROBE_SPEED 20000
@@ -773,7 +773,8 @@
 #define Y_MIN_POS 0
 #define Z_MIN_POS 0
 // DSW reset Z at 217 probe #define X_MAX_POS 213
-#define X_MAX_POS 217
+// DSW 20171217 Added 1mm to to really retract Flip-Zs
+#define X_MAX_POS 218
 #define Y_MAX_POS 201
 // DSW could not reach top#define Z_MAX_POS 210
 #define Z_MAX_POS 210
@@ -862,10 +863,10 @@
   #define ABL_GRID_POINTS_Y ABL_GRID_POINTS_X
 
    // Set the boundaries for probing (where the probe can reach).
-  #define LEFT_PROBE_BED_POSITION 23  
-  #define RIGHT_PROBE_BED_POSITION 196
-  #define FRONT_PROBE_BED_POSITION 33
-  #define BACK_PROBE_BED_POSITION 194
+  #define LEFT_PROBE_BED_POSITION 20  
+  #define RIGHT_PROBE_BED_POSITION 195
+  #define FRONT_PROBE_BED_POSITION 20
+  #define BACK_PROBE_BED_POSITION 180
 
   // The Z probe minimum outer margin (to validate G29 parameters).
   #define MIN_PROBE_EDGE 20
