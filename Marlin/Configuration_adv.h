@@ -680,11 +680,11 @@
 
 // Add support for experimental filament exchange support M600; requires display
 #if ENABLED(ULTIPANEL)
-  // #define FILAMENT_CHANGE_FEATURE             // Enable filament exchange menu and M600 g-code (used for runout sensor too)
+   #define FILAMENT_CHANGE_FEATURE             // Enable filament exchange menu and M600 g-code (used for runout sensor too)
   #if ENABLED(FILAMENT_CHANGE_FEATURE)
-    #define FILAMENT_CHANGE_X_POS 3             // X position of hotend
-    #define FILAMENT_CHANGE_Y_POS 3             // Y position of hotend
-    #define FILAMENT_CHANGE_Z_ADD 10            // Z addition of hotend (lift)
+    #define FILAMENT_CHANGE_X_POS 122           // X position of hotend (122 is centered, 202 is right side on Sam Bell)
+    #define FILAMENT_CHANGE_Y_POS 0             // Y position of hotend
+    #define FILAMENT_CHANGE_Z_ADD 30            // Z addition of hotend (lift)
     #define FILAMENT_CHANGE_XY_FEEDRATE 100     // X and Y axes feedrate in mm/s (also used for delta printers Z axis)
     #define FILAMENT_CHANGE_Z_FEEDRATE 5        // Z axis feedrate in mm/s (not used for delta printers)
     #define FILAMENT_CHANGE_RETRACT_LENGTH 2    // Initial retract in mm
@@ -695,7 +695,7 @@
                                                 // shorter lenght for printers without bowden to unload filament from extruder only,
                                                 // 0 to disable unloading for manual unloading
     #define FILAMENT_CHANGE_UNLOAD_FEEDRATE 10  // Unload filament feedrate in mm/s - filament unloading can be fast
-    #define FILAMENT_CHANGE_LOAD_LENGTH 0       // Load filament length over hotend in mm
+    #define FILAMENT_CHANGE_LOAD_LENGTH 15      // Load filament length over hotend in mm
                                                 // Longer length for bowden printers to fast load filament into whole bowden tube over the hotend,
                                                 // Short or zero length for printers without bowden where loading is not used
     #define FILAMENT_CHANGE_LOAD_FEEDRATE 10    // Load filament feedrate in mm/s - filament loading into the bowden tube can be fast

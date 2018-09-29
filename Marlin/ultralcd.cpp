@@ -1267,31 +1267,9 @@ void kill_screen(const char* lcd_msg) {
     #endif
 
     //
-    // Set Home Offsets
-    //
-    MENU_ITEM(function, MSG_SET_HOME_OFFSETS, lcd_set_home_offsets);
-    //MENU_ITEM(gcode, MSG_SET_ORIGIN, PSTR("G92 X0 Y0 Z0"));
-
-    //
-    // Level Bed
-    //
-    #if HAS_ABL
-      MENU_ITEM(gcode, MSG_LEVEL_BED,
-        axis_homed[X_AXIS] && axis_homed[Y_AXIS] ? PSTR("G29") : PSTR("G28\nG29")
-      );
-    #elif ENABLED(MANUAL_BED_LEVELING)
-      MENU_ITEM(submenu, MSG_LEVEL_BED, lcd_level_bed);
-    #endif
-
-    //
     // Move Axis
     //
     MENU_ITEM(submenu, MSG_MOVE_AXIS, lcd_move_menu);
-
-    //
-    // Disable Steppers
-    //
-    MENU_ITEM(gcode, MSG_DISABLE_STEPPERS, PSTR("M84"));
 
     //
     // Preheat PLA
@@ -1311,6 +1289,36 @@ void kill_screen(const char* lcd_msg) {
     // Cooldown
     //
     MENU_ITEM(function, MSG_COOLDOWN, lcd_cooldown);
+
+    //
+    // Change filament
+    //
+    #if ENABLED(FILAMENT_CHANGE_FEATURE)
+       MENU_ITEM(function, MSG_FILAMENTCHANGE, lcd_enqueue_filament_change);
+    #endif
+
+    //
+    // Disable Steppers
+    //
+    MENU_ITEM(gcode, MSG_DISABLE_STEPPERS, PSTR("M84"));
+
+    //
+    // Set Home Offsets
+    //
+    MENU_ITEM(function, MSG_SET_HOME_OFFSETS, lcd_set_home_offsets);
+    //MENU_ITEM(gcode, MSG_SET_ORIGIN, PSTR("G92 X0 Y0 Z0"));
+
+    //
+    // Level Bed
+    //
+    #if HAS_ABL
+      MENU_ITEM(gcode, MSG_LEVEL_BED,
+        axis_homed[X_AXIS] && axis_homed[Y_AXIS] ? PSTR("G29") : PSTR("G28\nG29")
+      );
+    #elif ENABLED(MANUAL_BED_LEVELING)
+      MENU_ITEM(submenu, MSG_LEVEL_BED, lcd_level_bed);
+    #endif
+
 
     //
     // BLTouch Self-Test and Reset
