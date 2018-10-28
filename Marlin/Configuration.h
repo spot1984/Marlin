@@ -1,5 +1,5 @@
 /**
- * Marlin 3D Printer Firmware - (Mandelbot - Kevin)
+ * Marlin 3D Printer Firmware - (Mandelbot 1.1RC8)
  * Copyright (C) 2016 MarlinFirmware [https://github.com/MarlinFirmware/Marlin]
  *
  * Based on Sprinter and grbl.
