@@ -537,6 +537,7 @@ void lcd_printPGM_utf(const char *str, uint8_t n=LCD_WIDTH) {
     lcd.setCursor(indent, 2); lcd.write('\x02'); lcd_printPGM(PSTR( "------" ));  lcd.write('\x03');
   }
 
+  // DSW this is where we can add a custom boot screen.
   void lcd_bootscreen() {
     lcd_set_custom_characters(CHARSET_BOOT);
     lcd.clear();

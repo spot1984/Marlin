@@ -1,7 +1,7 @@
 /*
 ================================================================================
 
-  Marlin Firmware
+  Marlin Firmware  - (Mandelbot 1.1.x - 1.9)
 
   (c) 2011-2018 MarlinFirmware
   Portions of Marlin are (c) by their respective authors.
