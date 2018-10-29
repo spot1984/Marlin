@@ -571,7 +571,7 @@
 #define X_MAX_ENDSTOP_INVERTING false // set to true to invert the logic of the endstop.
 #define Y_MAX_ENDSTOP_INVERTING false // set to true to invert the logic of the endstop.
 #define Z_MAX_ENDSTOP_INVERTING false // set to true to invert the logic of the endstop.
-#define Z_MIN_PROBE_ENDSTOP_INVERTING false // set to true to invert the logic of the probe.
+#define Z_MIN_PROBE_ENDSTOP_INVERTING true // set to true to invert the logic of the probe.
 
 /**
  * Stepper Drivers
@@ -838,7 +838,7 @@
 //#define Z_PROBE_OFFSET_FROM_EXTRUDER -19.25 // 1st layer thick
 
 // Certain types of probes need to stay away from edges
-#define MIN_PROBE_EDGE 20 // MANDELBOT KEVIN
+#define MIN_PROBE_EDGE 33 // MANDELBOT KEVIN, was 20, could be 33, 25 is least it can go,   needs to be >= X_PROBE_OFFSET_FROM_EXTRUDER
 
 // X and Y axis travel speed (mm/m) between probes
 #define XY_PROBE_SPEED 20000
@@ -938,8 +938,8 @@
 // @section machine
 
 // The size of the print bed
-#define X_BED_SIZE 217
-#define Y_BED_SIZE 201
+#define X_BED_SIZE 238 // MANDELBOT KEVIN: 200 + extra for flip-it switch.   must be EVEN integer number for SanityCheck.h to pass since div by 2 rounds down, we get error when ODD number.
+#define Y_BED_SIZE 202 // MANDELBOT KEVIN: must be EVEN integer number for SanityCheck.h to pass since div by 2 rounds down, we get error when ODD number.
 
 // Travel limits (mm) after homing, corresponding to endstop positions.
 #define X_MIN_POS 0
@@ -1083,16 +1083,16 @@
   #define GRID_MAX_POINTS_Y GRID_MAX_POINTS_X
 
   // Set the boundaries for probing (where the probe can reach).
-  //#define LEFT_PROBE_BED_POSITION MIN_PROBE_EDGE
-  //#define RIGHT_PROBE_BED_POSITION (X_BED_SIZE - MIN_PROBE_EDGE)
-  //#define FRONT_PROBE_BED_POSITION MIN_PROBE_EDGE
-  //#define BACK_PROBE_BED_POSITION (Y_BED_SIZE - MIN_PROBE_EDGE)
+  #define LEFT_PROBE_BED_POSITION MIN_PROBE_EDGE
+  #define RIGHT_PROBE_BED_POSITION (X_BED_SIZE - MIN_PROBE_EDGE)
+  #define FRONT_PROBE_BED_POSITION MIN_PROBE_EDGE
+  #define BACK_PROBE_BED_POSITION (Y_BED_SIZE - MIN_PROBE_EDGE)
 
   // Set the boundaries for probing (where the probe can reach).
-  #define LEFT_PROBE_BED_POSITION 33   //23 KEVIN MANDELBOT
-  #define RIGHT_PROBE_BED_POSITION 196
-  #define FRONT_PROBE_BED_POSITION 33
-  #define BACK_PROBE_BED_POSITION 194
+  //#define LEFT_PROBE_BED_POSITION 33   //23 KEVIN MANDELBOT
+  //#define RIGHT_PROBE_BED_POSITION 196
+  //#define FRONT_PROBE_BED_POSITION 33
+  //#define BACK_PROBE_BED_POSITION 194
 
   // Probe along the Y axis, advancing X after each column
   //#define PROBE_Y_FIRST

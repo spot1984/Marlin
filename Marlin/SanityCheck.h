@@ -941,6 +941,33 @@ static_assert(X_MAX_LENGTH >= X_BED_SIZE && Y_MAX_LENGTH >= Y_BED_SIZE,
    */
   #if ABL_GRID
 
+    // MANDELBOT KEVIN: debug why LEFT_PROBE_BED_POSITION >= MIN_PROBE_X isnt working
+    /*
+    static_assert( X_BED_SIZE == 238, "wrong" );
+    static_assert( X_MIN_POS == 0, "wrong" );
+    static_assert( X_PROBE_OFFSET_FROM_EXTRUDER == 25, "wrong" );
+    static_assert( MIN_PROBE_EDGE == 25, "wrong" );
+    static_assert( X_CENTER == ((X_BED_SIZE) / 2), "wrong" ); // 218/2 = 109
+    static_assert( X_MIN_BED == (X_CENTER - (X_BED_SIZE) / 2), "wrong" );  // 0 = 109 - 109
+    static_assert( LEFT_PROBE_BED_POSITION == MIN_PROBE_EDGE, "wrong" ); // 25
+    //#define _MIN_PROBE_XX (max(X_MIN_BED + MIN_PROBE_EDGE, X_MIN_POS + X_PROBE_OFFSET_FROM_EXTRUDER))
+    //#define _MIN_PROBE_XX (max(0 + 25, 0 + 25))
+    */
+
+    // MANDELBOT KEVIN: debug why BACK_PROBE_BED_POSITION <= MAX_PROBE_Y isn't working
+    /*
+    static_assert( Y_BED_SIZE == 202, "wrong" );
+    static_assert( Y_MAX_POS == 0, "wrong" );
+    static_assert( Y_PROBE_OFFSET_FROM_EXTRUDER == 25, "wrong" );
+    static_assert( MIN_PROBE_EDGE == 25, "wrong" );
+    static_assert( Y_CENTER == ((Y_BED_SIZE) / 2), "wrong" ); // 218/2 = 109
+    static_assert( Y_MAX_BED == (Y_CENTER - (Y_BED_SIZE) / 2), "wrong" );  // 0 = 109 - 109
+    static_assert( BACK_PROBE_BED_POSITION == (Y_BED_SIZE - MIN_PROBE_EDGE), "wrong" ); // 25
+    //#define _MAX_PROBE_Y (min(Y_MAX_BED - (MIN_PROBE_EDGE), Y_MAX_POS + Y_PROBE_OFFSET_FROM_EXTRUDER))
+    //#define _MAX_PROBE_Y (min(Y_MAX_BED - (MIN_PROBE_EDGE), Y_MAX_POS + Y_PROBE_OFFSET_FROM_EXTRUDER))
+    */
+
+    // MANDELBOT KEVIN:  got here?  maybe you're using ODD numbers for X_BED_SIZE or Y_BED_SIZE.  Or maybe MIN_PROBE_EDGE is < X_PROBE_OFFSET_FROM_EXTRUDER (horribly complex chain of numbers to verify... yuk)
     static_assert(LEFT_PROBE_BED_POSITION < RIGHT_PROBE_BED_POSITION, "LEFT_PROBE_BED_POSITION must be less than RIGHT_PROBE_BED_POSITION.");
     static_assert(FRONT_PROBE_BED_POSITION < BACK_PROBE_BED_POSITION, "FRONT_PROBE_BED_POSITION must be less than BACK_PROBE_BED_POSITION.");
     static_assert(LEFT_PROBE_BED_POSITION >= MIN_PROBE_X, "LEFT_PROBE_BED_POSITION is outside the probe region.");
