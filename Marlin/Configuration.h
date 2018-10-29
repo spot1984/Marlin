@@ -938,14 +938,14 @@
 // @section machine
 
 // The size of the print bed
-#define X_BED_SIZE 238 // MANDELBOT KEVIN: 200 + extra for flip-it switch.   must be EVEN integer number for SanityCheck.h to pass since div by 2 rounds down, we get error when ODD number.
+#define X_BED_SIZE 202 // MANDELBOT KEVIN: must be EVEN integer number for SanityCheck.h to pass since div by 2 rounds down, we get error when ODD number.
 #define Y_BED_SIZE 202 // MANDELBOT KEVIN: must be EVEN integer number for SanityCheck.h to pass since div by 2 rounds down, we get error when ODD number.
 
 // Travel limits (mm) after homing, corresponding to endstop positions.
 #define X_MIN_POS 0
 #define Y_MIN_POS 0
 #define Z_MIN_POS 0
-#define X_MAX_POS X_BED_SIZE
+#define X_MAX_POS X_BED_SIZE + 16 // MANDELBOT KEVIN: + extra for flip-it switch.   
 #define Y_MAX_POS Y_BED_SIZE
 #define Z_MAX_POS 210
 
