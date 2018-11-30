@@ -198,7 +198,7 @@
  */
 //#define USE_CONTROLLER_FAN
 #if ENABLED(USE_CONTROLLER_FAN)
-  #define CONTROLLER_FAN_PIN 11          // Set a custom pin for the controller fan    MANDELBOT KEVIN:  D11 on RRD Fan Extender board - will be -1 when/if i get a 2nd extruder head.
+  #define CONTROLLER_FAN_PIN 11          // Set a custom pin for the controller fan    MANDELBOT KEVIN:  D11 on RRD Fan Extender board - 11 if I want a controller fan, or set this to -1 when/if i get a 2nd extruder head.
   #define CONTROLLERFAN_SECS 60          // Duration in seconds for the fan to run after all motors are disabled
   #define CONTROLLERFAN_SPEED 255        // 255 == full speed
 #endif
