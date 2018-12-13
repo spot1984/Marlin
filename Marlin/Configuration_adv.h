@@ -694,8 +694,8 @@
                                                 // Longer length for bowden printers to unload filament from whole bowden tube,
                                                 // shorter lenght for printers without bowden to unload filament from extruder only,
                                                 // 0 to disable unloading for manual unloading
-    #define FILAMENT_CHANGE_UNLOAD_FEEDRATE 10  // Unload filament feedrate in mm/s - filament unloading can be fast
-    #define FILAMENT_CHANGE_LOAD_LENGTH 15      // Load filament length over hotend in mm
+    #define FILAMENT_CHANGE_UNLOAD_FEEDRATE 100  // Unload filament feedrate in mm/s - filament unloading can be fast
+    #define FILAMENT_CHANGE_LOAD_LENGTH 50      // Load filament length over hotend in mm
                                                 // Longer length for bowden printers to fast load filament into whole bowden tube over the hotend,
                                                 // Short or zero length for printers without bowden where loading is not used
     #define FILAMENT_CHANGE_LOAD_FEEDRATE 10    // Load filament feedrate in mm/s - filament loading into the bowden tube can be fast

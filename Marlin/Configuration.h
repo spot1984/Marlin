@@ -333,9 +333,23 @@
 
     // M106 ; turn on cooling fan 
     // M303 E0 S220 C8 ; tune PID
-    #define  DEFAULT_Kp 23.09
-    #define  DEFAULT_Ki 1.85
-    #define  DEFAULT_Kd 72.06
+    //#define  DEFAULT_Kp 23.09
+    //#define  DEFAULT_Ki 1.85
+    //#define  DEFAULT_Kd 72.06
+
+    // Sam-Bell Removed "Silicone" sock and wrapped head in 2 layers of Kapton tape
+    // no cooling fan
+    // M303 E0 S220 C8 ; tune PID
+    //#define  DEFAULT_Kp 21.24
+    //#define  DEFAULT_Ki 1.51
+    //#define  DEFAULT_Kd 74.65
+
+    // M106 ; turn on cooling fan 
+    // M303 E0 S220 C8 ; tune PID
+    #define  DEFAULT_Kp 23.98
+    #define  DEFAULT_Ki 1.74
+    #define  DEFAULT_Kd 82.50
+
   
   // Ultimaker
   //#define  DEFAULT_Kp 22.2
@@ -385,10 +399,17 @@
   //#define  DEFAULT_bedKp 373.96
   //#define  DEFAULT_bedKi 71.77
   //#define  DEFAULT_bedKd 487.13
+
   // M303 E-1 S60 C8 
-  #define  DEFAULT_bedKp 607.98
-  #define  DEFAULT_bedKi 118.93
-  #define  DEFAULT_bedKd 777.00
+  //#define  DEFAULT_bedKp 607.98
+  //#define  DEFAULT_bedKi 118.93
+  //#define  DEFAULT_bedKd 777.00
+
+  // Sam-Bell added glass build plate
+  // M303 E-1 S80 C8 
+  #define  DEFAULT_bedKp 687.33
+  #define  DEFAULT_bedKi 131.92
+  #define  DEFAULT_bedKd 895.24
 
   //120V 250W silicone heater into 4mm borosilicate (MendelMax 1.5+)
   //from FOPDT model - kp=.39 Tp=405 Tdead=66, Tc set to 79.2, aggressive factor of .15 (vs .1, 1, 10)
@@ -630,7 +651,8 @@
 // DSW 8/19/2017
 #define X_PROBE_OFFSET_FROM_EXTRUDER 17  // X offset: -left  +right  [of the nozzle]
 #define Y_PROBE_OFFSET_FROM_EXTRUDER 10  // Y offset: -front +behind [the nozzle]
-#define Z_PROBE_OFFSET_FROM_EXTRUDER -10.6 // Z offset: -below +above  [the nozzle]
+#define Z_PROBE_OFFSET_FROM_EXTRUDER -10.72 // Z offset: -below +above  [the nozzle]
+// DSW 12/12/2018 add the value from babystep z to this value (will be adding negative value to negative value to lower head)
 
 // X and Y axis travel speed (mm/m) between probes
 #define XY_PROBE_SPEED 20000
