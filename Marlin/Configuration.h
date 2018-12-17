@@ -825,14 +825,14 @@
 #define X_PROBE_OFFSET_FROM_EXTRUDER 25     // X offset: -left  +right  [of the nozzle]
 #define Y_PROBE_OFFSET_FROM_EXTRUDER 5      // Y offset: -front +behind [the nozzle]
 
-// KEVIN: to calibrate: use EMPIRE stainless steel ruler from harborfreight, it's 0.8mm, move Z down until it just mildly grabs the ruler, it will read 0.8 for Z on the LCD
+// KEVIN: to calibrate: use EMPIRE stainless steel ruler from harborfreight, it's 0.88mm, move Z down until it just mildly grabs the ruler, it will read 0.88 for Z on the LCD
 // eg: offset of -18.93 puts 0 farther from the bed
 // eg: offset of -19.03 puts 0 closer to the bed
-// eg: with the hotend onto the 0.8mm ruler you see 0.5, then subtract .3 from -17.68 == -17.98
+// eg: with the hotend onto the 0.88mm ruler you see 0.5, then subtract .3 from -17.68 == -17.98
 // so that the hotend grips the ruler tightly
 // Then
-// Use M851 Z-19.2 to dial it in, while printing the calibration cylinder
-#define Z_PROBE_OFFSET_FROM_EXTRUDER -19.2
+// Use M851 Z-19.5 to dial it in, while printing the calibration cylinder, look for the first layer smoosh...
+#define Z_PROBE_OFFSET_FROM_EXTRUDER -19.5
 
 // KEVIN: old settings before re-screwing the hotend
 //#define Z_PROBE_OFFSET_FROM_EXTRUDER -19.43 // 1st layer is smooth and has tiny lip protruding
