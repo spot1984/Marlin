@@ -315,28 +315,7 @@
   #define K1 0.95 //smoothing factor within the PID
 
   // If you are using a pre-configured hotend then you can use one of the value sets by uncommenting it
-  // DSW Sam Bell
-    // M303 E0 S200 C8 These led to Thermal runaway error when printing at 215
-    //#define  DEFAULT_Kp 21.28
-    //#define  DEFAULT_Ki 1.79
-    //#define  DEFAULT_Kd 63.28
-  
-    // M303 E0 S225 C8
-    //#define  DEFAULT_Kp 23.63
-    //#define  DEFAULT_Ki 1.99
-    //#define  DEFAULT_Kd 70.26
-  
-    //M303 E0 S250 C8
-    //#define  DEFAULT_Kp 19.32
-    //#define  DEFAULT_Ki 1.52
-    //#define  DEFAULT_Kd 61.25
-
-    // M106 ; turn on cooling fan 
-    // M303 E0 S220 C8 ; tune PID
-    //#define  DEFAULT_Kp 23.09
-    //#define  DEFAULT_Ki 1.85
-    //#define  DEFAULT_Kd 72.06
-
+  // Sam Bell
     // Sam-Bell Removed "Silicone" sock and wrapped head in 2 layers of Kapton tape
     // no cooling fan
     // M303 E0 S220 C8 ; tune PID
@@ -349,22 +328,6 @@
     #define  DEFAULT_Kp 23.98
     #define  DEFAULT_Ki 1.74
     #define  DEFAULT_Kd 82.50
-
-  
-  // Ultimaker
-  //#define  DEFAULT_Kp 22.2
-  //#define  DEFAULT_Ki 1.08
-  //#define  DEFAULT_Kd 114
-
-  // MakerGear
-  //#define  DEFAULT_Kp 7.0
-  //#define  DEFAULT_Ki 0.1
-  //#define  DEFAULT_Kd 12
-
-  // Mendel Parts V9 on 12V
-  //#define  DEFAULT_Kp 63.0
-  //#define  DEFAULT_Ki 2.25
-  //#define  DEFAULT_Kd 440
 
 #endif // PIDTEMP
 
@@ -394,34 +357,11 @@
 
   //#define PID_BED_DEBUG // Sends debug data to the serial port.
 
-  // DSW Sam Bell
-  // M303 E-1 S60 C8 
-  //#define  DEFAULT_bedKp 373.96
-  //#define  DEFAULT_bedKi 71.77
-  //#define  DEFAULT_bedKd 487.13
-
-  // M303 E-1 S60 C8 
-  //#define  DEFAULT_bedKp 607.98
-  //#define  DEFAULT_bedKi 118.93
-  //#define  DEFAULT_bedKd 777.00
-
-  // Sam-Bell added glass build plate
+  // Sam-Bell, cardboard insulation, glass build plate
   // M303 E-1 S80 C8 
   #define  DEFAULT_bedKp 687.33
   #define  DEFAULT_bedKi 131.92
   #define  DEFAULT_bedKd 895.24
-
-  //120V 250W silicone heater into 4mm borosilicate (MendelMax 1.5+)
-  //from FOPDT model - kp=.39 Tp=405 Tdead=66, Tc set to 79.2, aggressive factor of .15 (vs .1, 1, 10)
-  //#define  DEFAULT_bedKp 10.00
-  //#define  DEFAULT_bedKi .023
-  //#define  DEFAULT_bedKd 305.4
-
-  //120V 250W silicone heater into 4mm borosilicate (MendelMax 1.5+)
-  //from pidautotune
-  //#define  DEFAULT_bedKp 97.1
-  //#define  DEFAULT_bedKi 1.41
-  //#define  DEFAULT_bedKd 1675.16
 
   // FIND YOUR OWN: "M303 E-1 C8 S90" to run autotune on the bed at 90 degreesC for 8 cycles.
 #endif // PIDTEMPBED
@@ -536,7 +476,6 @@
  * Override with M92
  *                                      X, Y, Z, E0 [, E1[, E2[, E3]]]
  */
-//DSW #define DEFAULT_AXIS_STEPS_PER_UNIT   { 100, 100, 4000, 160 }
 //DSW swapped Z leadscrew#define DEFAULT_AXIS_STEPS_PER_UNIT   { 100, 100, 2015.75, 155 } // DSW 16tpi ~ 2015.75
 #define DEFAULT_AXIS_STEPS_PER_UNIT   { 100, 100, 400, 155 } // DSW 16tpi ~ 2015.75
 
@@ -545,9 +484,11 @@
  * Override with M203
  *                                      X, Y, Z, E0 [, E1[, E2[, E3]]]
  */
-//#define DEFAULT_MAX_FEEDRATE          { 200, 200, 3, 25 }
-//DSW swapped leadscrew#define DEFAULT_MAX_FEEDRATE          { 20000/60, 20000/60, 350/60, 300/60 }
-#define DEFAULT_MAX_FEEDRATE          { 20000/60, 20000/60, 1950/60, 300/60 }
+//Prusa #define DEFAULT_MAX_FEEDRATE          {500, 500, 12, 120}    // (mm/sec)
+//Prusa #define MANUAL_FEEDRATE {3000, 3000, 1000, 100}   // set the speeds for manual moves (mm/min)
+#define DEFAULT_MAX_FEEDRATE          { 20000/60, 20000/60, 1950/60, 300/60 } //  (mm/sec) converted: { 333.3, 333.3, 32.5, 5 }
+#define MANUAL_FEEDRATE {3000, 3000, 1000, 100}   // set the speeds for manual moves (mm/min)
+
 // DSW Pronterface shows mm/min this is mm/s!!!
 // X goes crazy at 25000, hangs at 22000 can do 22000
 // Y goes crazy at 25000, hangs at 22000 can do 22000
@@ -560,10 +501,8 @@
  * Override with M201
  *                                      X, Y, Z, E0 [, E1[, E2[, E3]]]
  */
-// DSW adjusting Z acceleration #define DEFAULT_MAX_ACCELERATION      { 3000, 3000, 100, 10000 }
+//Prusa #define DEFAULT_MAX_ACCELERATION      {9000,9000,500,10000}    // X, Y, Z, E maximum start speed for accelerated moves. E default values are good for Skeinforge 40+, for older versions raise them a lot.
 #define DEFAULT_MAX_ACCELERATION      { 3000, 3000, 1000, 10000 }
-// DSW skipping y steps when printing a cylinder (belt was too tight)
-//#define DEFAULT_MAX_ACCELERATION      { 500, 500, 100, 600 }
 
 /**
  * Default Acceleration (change/s) change = mm/s
@@ -573,13 +512,11 @@
  *   M204 R    Retract Acceleration
  *   M204 T    Travel Acceleration
  */
+//Prusa #define DEFAULT_ACCELERATION          1500   // X, Y, Z and E max acceleration in mm/s^2 for printing moves
+//Prusa #define DEFAULT_RETRACT_ACCELERATION  1500   // X, Y, Z and E max acceleration in mm/s^2 for retracts
 #define DEFAULT_ACCELERATION          3000    // X, Y, Z and E acceleration for printing moves
 #define DEFAULT_RETRACT_ACCELERATION  3000    // E acceleration for retracts
 #define DEFAULT_TRAVEL_ACCELERATION   3000    // X, Y, Z acceleration for travel (non printing) moves
-// DSW 
-//#define DEFAULT_ACCELERATION          500    // X, Y, Z and E acceleration for printing moves
-//#define DEFAULT_RETRACT_ACCELERATION  600    // E acceleration for retracts
-//#define DEFAULT_TRAVEL_ACCELERATION   500    // X, Y, Z acceleration for travel (non printing) moves
 
 /**
  * Default Jerk (mm/s)
@@ -588,8 +525,12 @@
  * When changing speed and direction, if the difference is less than the
  * value set here, it may happen instantaneously.
  */
+//Prusa #define DEFAULT_XJERK                10.0    // (mm/sec)
+//Prusa #define DEFAULT_YJERK                10.0    // (mm/sec)
+//Prusa #define DEFAULT_ZJERK                 0.2    // (mm/sec)
+//Prusa #define DEFAULT_EJERK                 2.5    // (mm/sec)
 #define DEFAULT_XJERK                 10.0
-#define DEFAULT_YJERK                 10.0  //DSW 1.0
+#define DEFAULT_YJERK                 10.0
 #define DEFAULT_ZJERK                  0.4
 #define DEFAULT_EJERK                  2.0
 
