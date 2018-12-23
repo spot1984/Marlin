@@ -460,6 +460,9 @@
 //=============================================================================
 // @section motion
 
+// DSW uncomment this line to use the default motion settings for a Prusa i3 MK2
+#define USE_PRUSA_SETTINGS
+
 /**
  * Default Settings
  *
@@ -484,11 +487,13 @@
  * Override with M203
  *                                      X, Y, Z, E0 [, E1[, E2[, E3]]]
  */
-//Prusa #define DEFAULT_MAX_FEEDRATE          {500, 500, 12, 120}    // (mm/sec)
-//Prusa #define MANUAL_FEEDRATE {3000, 3000, 1000, 100}   // set the speeds for manual moves (mm/min)
-#define DEFAULT_MAX_FEEDRATE          { 20000/60, 20000/60, 1950/60, 300/60 } //  (mm/sec) converted: { 333.3, 333.3, 32.5, 5 }
-#define MANUAL_FEEDRATE {3000, 3000, 1000, 100}   // set the speeds for manual moves (mm/min)
-
+#ifdef USE_PRUSA_SETTINGS
+  #define DEFAULT_MAX_FEEDRATE {500, 500, 12, 120}   //Prusa (mm/sec)
+  #define MANUAL_FEEDRATE {3000, 3000, 1000, 100}    //Prusa set the speeds for manual moves (mm/min)
+#else
+  #define DEFAULT_MAX_FEEDRATE { 20000/60, 20000/60, 1950/60, 300/60 } //  (mm/sec) converted: { 333.3, 333.3, 32.5, 5 }
+  #define MANUAL_FEEDRATE {3000, 3000, 1000, 100}   // set the speeds for manual moves (mm/min)
+#endif
 // DSW Pronterface shows mm/min this is mm/s!!!
 // X goes crazy at 25000, hangs at 22000 can do 22000
 // Y goes crazy at 25000, hangs at 22000 can do 22000
@@ -501,9 +506,11 @@
  * Override with M201
  *                                      X, Y, Z, E0 [, E1[, E2[, E3]]]
  */
-//Prusa #define DEFAULT_MAX_ACCELERATION      {9000,9000,500,10000}    // X, Y, Z, E maximum start speed for accelerated moves. E default values are good for Skeinforge 40+, for older versions raise them a lot.
-#define DEFAULT_MAX_ACCELERATION      { 3000, 3000, 1000, 10000 }
-
+#ifdef USE_PRUSA_SETTINGS
+  #define DEFAULT_MAX_ACCELERATION      {9000,9000,500,10000}    // Prusa X, Y, Z, E maximum start speed for accelerated moves. E default values are good for Skeinforge 40+, for older versions raise them a lot.
+#else
+  #define DEFAULT_MAX_ACCELERATION      { 3000, 3000, 1000, 10000 }
+#endif
 /**
  * Default Acceleration (change/s) change = mm/s
  * Override with M204
@@ -512,10 +519,13 @@
  *   M204 R    Retract Acceleration
  *   M204 T    Travel Acceleration
  */
-//Prusa #define DEFAULT_ACCELERATION          1500   // X, Y, Z and E max acceleration in mm/s^2 for printing moves
-//Prusa #define DEFAULT_RETRACT_ACCELERATION  1500   // X, Y, Z and E max acceleration in mm/s^2 for retracts
-#define DEFAULT_ACCELERATION          3000    // X, Y, Z and E acceleration for printing moves
-#define DEFAULT_RETRACT_ACCELERATION  3000    // E acceleration for retracts
+#ifdef USE_PRUSA_SETTINGS
+  #define DEFAULT_ACCELERATION          1500   //Prusa  X, Y, Z and E max acceleration in mm/s^2 for printing moves
+  #define DEFAULT_RETRACT_ACCELERATION  1500   //Prusa  X, Y, Z and E max acceleration in mm/s^2 for retracts
+#else
+  #define DEFAULT_ACCELERATION          3000    // X, Y, Z and E acceleration for printing moves
+  #define DEFAULT_RETRACT_ACCELERATION  3000    // E acceleration for retracts
+#endif
 #define DEFAULT_TRAVEL_ACCELERATION   3000    // X, Y, Z acceleration for travel (non printing) moves
 
 /**
@@ -525,14 +535,17 @@
  * When changing speed and direction, if the difference is less than the
  * value set here, it may happen instantaneously.
  */
-//Prusa #define DEFAULT_XJERK                10.0    // (mm/sec)
-//Prusa #define DEFAULT_YJERK                10.0    // (mm/sec)
-//Prusa #define DEFAULT_ZJERK                 0.2    // (mm/sec)
-//Prusa #define DEFAULT_EJERK                 2.5    // (mm/sec)
-#define DEFAULT_XJERK                 10.0
-#define DEFAULT_YJERK                 10.0
-#define DEFAULT_ZJERK                  0.4
-#define DEFAULT_EJERK                  2.0
+#ifdef USE_PRUSA_SETTINGS
+  #define DEFAULT_XJERK                10.0    //Prusa  (mm/sec)
+  #define DEFAULT_YJERK                10.0    //Prusa  (mm/sec)
+  #define DEFAULT_ZJERK                 0.2    //Prusa  (mm/sec)
+  #define DEFAULT_EJERK                 2.5    //Prusa  (mm/sec)
+#else
+  #define DEFAULT_XJERK                 10.0
+  #define DEFAULT_YJERK                 10.0
+  #define DEFAULT_ZJERK                  0.4
+  #define DEFAULT_EJERK                  2.0
+#endif
 
 
 //===========================================================================
