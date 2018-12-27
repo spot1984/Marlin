@@ -605,7 +605,7 @@
 // DSW 8/19/2017
 #define X_PROBE_OFFSET_FROM_EXTRUDER 17  // X offset: -left  +right  [of the nozzle]
 #define Y_PROBE_OFFSET_FROM_EXTRUDER 10  // Y offset: -front +behind [the nozzle]
-#define Z_PROBE_OFFSET_FROM_EXTRUDER -10.72 // Z offset: -below +above  [the nozzle]
+#define Z_PROBE_OFFSET_FROM_EXTRUDER -10.83 // Z offset: -below +above  [the nozzle]
 // DSW 12/12/2018 add the value from babystep z to this value (will be adding negative value to negative value to lower head)
 
 // X and Y axis travel speed (mm/m) between probes
