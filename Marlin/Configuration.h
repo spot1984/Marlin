@@ -832,7 +832,9 @@
 // so that the hotend grips the ruler tightly
 // Then
 // Use M851 Z-19.5 to dial it in, while printing the calibration cylinder, look for the first layer smoosh...
-#define Z_PROBE_OFFSET_FROM_EXTRUDER -19.5
+//#define Z_PROBE_OFFSET_FROM_EXTRUDER -18.85  // calibrated off black PETG / in skyroom
+//#define Z_PROBE_OFFSET_FROM_EXTRUDER -19.10  // calibrated off brass / in garage - still noodly on first layer
+#define Z_PROBE_OFFSET_FROM_EXTRUDER -19.10    // calibrated off brass / in garage
 
 // KEVIN: old settings before re-screwing the hotend
 //#define Z_PROBE_OFFSET_FROM_EXTRUDER -19.43 // 1st layer is smooth and has tiny lip protruding
