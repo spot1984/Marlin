@@ -609,14 +609,20 @@
  * Override with M92
  *                                      X, Y, Z, E0 [, E1[, E2[, E3[, E4]]]]
  */
-#define DEFAULT_AXIS_STEPS_PER_UNIT   { 30.3, 30.3, 30.3, 30.3 }
+ // 20190121 DSW GT2 belts, 2mm pitch, 14 tooth pinion, 200 steps/rev , 1/16th microstepping
+ // 14*2=24mm/revolution
+ // 200*16=3200 steps/revolution
+ // 3200 steps/rev / 24mm/rev = 133.3 steps/mm 
+// #define DEFAULT_AXIS_STEPS_PER_UNIT   { 133.3, 133.3, 133.3, 133.3 }
+ // 100mm measured at 116.5  100/116.5*133.3 = 114.42
+  #define DEFAULT_AXIS_STEPS_PER_UNIT   { 114.42, 114.42, 133.3, 133.3 }
 
 /**
  * Default Max Feed Rate (mm/s)
  * Override with M203
  *                                      X, Y, Z, E0 [, E1[, E2[, E3[, E4]]]]
  */
-#define DEFAULT_MAX_FEEDRATE          { 20000, 20000, 20000, 20000 }
+//#define DEFAULT_MAX_FEEDRATE          { 20000, 20000, 20000, 20000 }
 
 /**
  * Default Max Acceleration (change/s) change = mm/s
