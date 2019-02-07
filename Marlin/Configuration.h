@@ -339,9 +339,17 @@
     // bare hotend, no tape, no sock
     // M106 ; turn on cooling fan 
     // M303 E0 S220 C8 ; tune PID
-    #define  DEFAULT_Kp 22.79
-    #define  DEFAULT_Ki 1.67
-    #define  DEFAULT_Kd 77.8650
+    //#define  DEFAULT_Kp 22.79
+    //#define  DEFAULT_Ki 1.67
+    //#define  DEFAULT_Kd 77.8650
+
+    // new tape
+    // M106 ; turn on cooling fan 
+    // M303 E0 S240 C8 ; tune PID
+    #define  DEFAULT_Kp 21.85
+    #define  DEFAULT_Ki 1.59
+    #define  DEFAULT_Kd 75.18
+
 
 #endif // PIDTEMP
 
@@ -619,7 +627,7 @@
 // DSW 8/19/2017
 #define X_PROBE_OFFSET_FROM_EXTRUDER 17  // X offset: -left  +right  [of the nozzle]
 #define Y_PROBE_OFFSET_FROM_EXTRUDER 10  // Y offset: -front +behind [the nozzle]
-#define Z_PROBE_OFFSET_FROM_EXTRUDER -10.68 // Z offset: -below +above  [the nozzle]
+#define Z_PROBE_OFFSET_FROM_EXTRUDER -10.73 // Z offset: -below +above  [the nozzle]
 // DSW 12/12/2018 add the value from babystep z to this value (will be adding negative value to negative value to lower head)
 
 // X and Y axis travel speed (mm/m) between probes
