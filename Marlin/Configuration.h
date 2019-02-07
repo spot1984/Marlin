@@ -1,3 +1,11 @@
+/*
+                        _           _   
+   ___ __ _ _ __       | |__   ___ | |_ 
+  / __/ _` | '_ \ _____| '_ \ / _ \| __|
+ | (_| (_| | |_) |_____| |_) | (_) | |_ 
+  \___\__,_| .__/      |_.__/ \___/ \__|
+           |_|                        
+*/
 /**
  * Marlin 3D Printer Firmware
  * Copyright (C) 2016 MarlinFirmware [https://github.com/MarlinFirmware/Marlin]
@@ -613,16 +621,18 @@
  // 14*2=24mm/revolution
  // 200*16=3200 steps/revolution
  // 3200 steps/rev / 24mm/rev = 133.3 steps/mm 
-// #define DEFAULT_AXIS_STEPS_PER_UNIT   { 133.3, 133.3, 133.3, 133.3 }
+ //#define DEFAULT_AXIS_STEPS_PER_UNIT   { 133.3, 133.3, 133.3, 133.3 }
  // 100mm measured at 116.5  100/116.5*133.3 = 114.42
-  #define DEFAULT_AXIS_STEPS_PER_UNIT   { 114.42, 114.42, 133.3, 133.3 }
+ //#define DEFAULT_AXIS_STEPS_PER_UNIT   { 114.42, 114.42, 133.3, 133.3 }
+ // 200 measured 206mm (114.42/3)*(200/206) = 37.0291262136
+  #define DEFAULT_AXIS_STEPS_PER_UNIT   { 37.7848226669, 114.42, 133.3, 133.3 }
 
 /**
  * Default Max Feed Rate (mm/s)
  * Override with M203
  *                                      X, Y, Z, E0 [, E1[, E2[, E3[, E4]]]]
  */
-//#define DEFAULT_MAX_FEEDRATE          { 20000, 20000, 20000, 20000 }
+#define DEFAULT_MAX_FEEDRATE          { 20000, 20000, 20000, 20000 }
 
 /**
  * Default Max Acceleration (change/s) change = mm/s
