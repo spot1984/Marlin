@@ -1,4 +1,10 @@
-/**
+/*  ____                    ____       _ _ 
+   / ___|  __ _ _ __ ___   | __ )  ___| | |
+   \___ \ / _` | '_ ` _ \  |  _ \ / _ \ | |
+    ___) | (_| | | | | | | | |_) |  __/ | |
+   |____/ \__,_|_| |_| |_| |____/ \___|_|_|
+*/
+ /**
  * Marlin 3D Printer Firmware
  * Copyright (C) 2016 MarlinFirmware [https://github.com/MarlinFirmware/Marlin]
  *
