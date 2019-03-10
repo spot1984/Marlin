@@ -624,7 +624,18 @@
  //#define DEFAULT_AXIS_STEPS_PER_UNIT   { 133.3, 133.3, 133.3, 133.3 }
  // 100mm measured at 116.5  100/116.5*133.3 = 114.42
  //#define DEFAULT_AXIS_STEPS_PER_UNIT   { 114.42, 114.42, 133.3, 133.3 }
+ 
+  // mm/tooth 2
+  // teeth 42
+  // mm/rev  84
+  // steps/rev 200
+  // microsteps  16
+  // usteps/rev  3200
+  // steps/rev 38.0952381
+
  // 200 measured 206mm (114.42/3)*(200/206) = 37.0291262136
+
+ 
   #define DEFAULT_AXIS_STEPS_PER_UNIT   { 37.7848226669, 114.42, 133.3, 133.3 }
 
 /**
@@ -866,7 +877,7 @@
 
 // Invert the stepper direction. Change (or reverse the motor connector) if an axis goes the wrong way.
 #define INVERT_X_DIR false
-#define INVERT_Y_DIR true
+#define INVERT_Y_DIR false
 #define INVERT_Z_DIR false
 
 // @section extruder
