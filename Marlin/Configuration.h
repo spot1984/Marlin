@@ -633,10 +633,14 @@
   // usteps/rev  3200
   // steps/rev 38.0952381
 
- // 200 measured 206mm (114.42/3)*(200/206) = 37.0291262136
-
- 
-  #define DEFAULT_AXIS_STEPS_PER_UNIT   { 37.7848226669, 114.42, 133.3, 133.3 }
+ // X 200 measured 206mm (114.42/3)*(200/206) = 37.0291262136
+ // Y is 14 pin sprocket on motor shaft
+ // Z is steps:   Motor is 4096 steps, even with half stepping ? 
+ //               Speed of 200 to 250 works, 10 is full revolution with 409.6 below
+ // E0 is angle:  Motor is 20 steps, 16 microsteps = 320 steps per revolution, 
+ //               21-02485 motor has poor resolution
+ // E1 is dual X
+   #define DEFAULT_AXIS_STEPS_PER_UNIT   { 37.7848226669, 114.42, 409.6, 1.0 }
 
 /**
  * Default Max Feed Rate (mm/s)
