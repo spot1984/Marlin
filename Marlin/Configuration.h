@@ -635,12 +635,13 @@
 
  // X 200 measured 206mm (114.42/3)*(200/206) = 37.0291262136
  // Y is 14 pin sprocket on motor shaft
- // Z is steps:   Motor is 4096 steps, even with half stepping ? 
- //               Speed of 200 to 250 works, 10 is full revolution with 409.6 below
- // E0 is angle:  Motor is 20 steps, 16 microsteps = 320 steps per revolution, 
- //               21-02485 motor has poor resolution
+ // Z is steps:   Motor is 4096 steps (64 steps/rev with 64x gear reduction, full stepping enabled in the driver)
+ //               Gear is 16 teeth @ 5mm pitch or 80mm/rev
+ //               51.2 steps/mm
+ // E0 is angle:  Motor is 4096 steps (64 steps/rev with 64x gear reduction, full stepping enabled in the driver)
+ //               11.37 steps/degree
  // E1 is dual X
-   #define DEFAULT_AXIS_STEPS_PER_UNIT   { 37.7848226669, 114.42, 409.6, 1.0 }
+   #define DEFAULT_AXIS_STEPS_PER_UNIT   { 37.7848226669, 114.42, 51.2 , 11.37 }
 
 /**
  * Default Max Feed Rate (mm/s)
