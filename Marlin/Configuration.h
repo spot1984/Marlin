@@ -639,9 +639,10 @@
  //               Gear is 16 teeth @ 5mm pitch or 80mm/rev
  //               51.2 steps/mm
  // E0 is angle:  Motor is 4096 steps (64 steps/rev with 64x gear reduction, full stepping enabled in the driver)
- //               11.37 steps/degree
+ //               11.37 steps/degree (why is it half that?! 5.688888889)
+
  // E1 is dual X
-   #define DEFAULT_AXIS_STEPS_PER_UNIT   { 37.7848226669, 114.42, 51.2 , 11.37 }
+   #define DEFAULT_AXIS_STEPS_PER_UNIT   { 37.7848226669, 114.42, 51.2 , 5.688888889 }
 
 /**
  * Default Max Feed Rate (mm/s)
@@ -888,7 +889,7 @@
 // @section extruder
 
 // For direct drive extruder v9 set to true, for geared extruder set to false.
-#define INVERT_E0_DIR false
+#define INVERT_E0_DIR true
 #define INVERT_E1_DIR false
 #define INVERT_E2_DIR false
 #define INVERT_E3_DIR false
