@@ -631,7 +631,7 @@
   // steps/rev 200
   // microsteps  16
   // usteps/rev  3200
-  // steps/rev 38.0952381
+  // steps/mm 38.0952381
 
  // X 200 measured 206mm (114.42/3)*(200/206) = 37.0291262136
  // Y is 14 pin sprocket on motor shaft
@@ -642,7 +642,7 @@
  //               11.37 steps/degree (why is it half that?! 5.688888889)
 
  // E1 is dual X
-   #define DEFAULT_AXIS_STEPS_PER_UNIT   { 37.7848226669, 114.42, 51.2 , 5.688888889 }
+   #define DEFAULT_AXIS_STEPS_PER_UNIT   { 38.0571428619, 114.42, 51.2 , 5.688888889 }
 
 /**
  * Default Max Feed Rate (mm/s)
